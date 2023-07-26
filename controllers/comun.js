@@ -6,7 +6,7 @@ const __dirname = dirname(__filename);
 
 
 const inicio = async (req, res) => {
-    res.send(`${__dirname}\..\public\index.html`)
+    res.send(`${__dirname}/../public/index.html`)
     // res.sendFile(`${__dirname}/../public/index.html`)
 }
 
