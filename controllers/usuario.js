@@ -8,6 +8,7 @@ import queries from '../db/queries.js';
 const agregarUsuario = async (req, res) => {
   try {
     const { nombre, balance } = req.body;
+    if(!nombre || !balance) throw new Error("Error con valores");
     await pool.query(queries.agregarUsuario, [nombre, balance]);
     res.status(201).json({ message: 'Usuario agregado exitosamente' });
   } catch (error) {
