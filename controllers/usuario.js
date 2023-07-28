@@ -52,7 +52,7 @@ const eliminarUsuario = async (req, res) => {
     res.status(200).json({ message: 'Elimninado existosamente'});
   } catch (error) {
     console.error('Error al eliminar el usuario:', error);
-    res.status(500).json({ error: 'Algo salió mal al eliminar el usuario: '+error });
+    res.status(500).send({ error: 'Algo salió mal al eliminar el usuario: '+error });
   }
 };
 

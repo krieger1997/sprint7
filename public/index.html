@@ -258,11 +258,22 @@
 
   const eliminarUsuario = async (id) => {
     console.log("del",id)
-    const response = await fetch(`http://localhost:3000/usuario/${id}`, {
+    fetch(`http://localhost:3000/usuario/${id}`, {
       method: "DELETE",
-    });
-    console.log(response)
-    getUsuarios();
+    })
+    .then((response) => {
+      if(!response.ok){
+        throw response;
+      }
+    })
+    .catch((error) =>error.json().then(errorMessage => {
+      alert("No se pudo eliminar usuario")
+        console.log("error:",errorMessage.error);
+    }))
+    .finally(()=>{
+      getUsuarios();
+
+    })
   };
 
   const getTransferencias = async () => {
