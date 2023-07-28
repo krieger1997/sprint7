@@ -31,8 +31,12 @@ const obtenerUsuarios = async (req, res) => {
 // Ruta para actualizar un usuario
 const actualizarUsuario = async (req, res) => {
   try {
-    const { id, nombre, balance } = req.body;
-    await pool.query(queries.actualizarUsuario, [nombre, balance, id]);
+    const id  = req.params.id;
+
+    const { name, balance } = req.body;
+    console.log(req.body)
+    console.log(id, name, balance)
+    await pool.query(queries.actualizarUsuario, [name, balance, id]);
     res.json({ message: 'Usuario actualizado exitosamente' });
   } catch (error) {
     console.error('Error al actualizar el usuario:', error);
@@ -43,12 +47,12 @@ const actualizarUsuario = async (req, res) => {
 // Ruta para eliminar un usuario
 const eliminarUsuario = async (req, res) => {
   try {
-    const { id } = req.body;
+    const id  = req.params.id;
     await pool.query(queries.eliminarUsuario, [id]);
-    res.json({ message: 'Usuario eliminado exitosamente' });
+    res.status(200).json({ message: 'Elimninado existosamente'});
   } catch (error) {
     console.error('Error al eliminar el usuario:', error);
-    res.status(500).json({ error: 'Algo salió mal al eliminar el usuario' });
+    res.status(500).json({ error: 'Algo salió mal al eliminar el usuario: '+error });
   }
 };
 

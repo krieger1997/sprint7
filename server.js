@@ -1,6 +1,3 @@
-// const express = require('express');
-// const cors = require('cors');
-// const rutas = require('./routes/routes');
 import rutas from './routes/routes.js';
 import express  from 'express';
 
